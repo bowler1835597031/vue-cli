@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const url = 'http://www.baidu.com?name=zhangsan&age=18&sex=nan#';
+    const getUrlParams = (url) => {
+      const index1 = url.indexOf('?'),
+        index2 = url.indexOf('#'),
+        params = url.slice(index1 + 1, index2).split('&');
+      console.log(params); //['name=zhangsan', 'age=18', 'sex=nan']
+      let result = params.reduce(function (allparams, params) {
+        console.log(params); //'name=zhangsan', 'age=18', 'sex=nan',
+        let arr = params.split('=');
+        console.log(arr); //['name', 'zhangsan'],['age', '18'],['sex', 'nan']
+        allparams[arr[0]] = arr[1];
+        console.log(allparams); //{name: 'zhangsan', age: '18', sex: 'nan'}
+        return allparams;
+      }, {});
+      console.log(result); //{name: 'zhangsan', age: '18', sex: 'nan'}
+      return result;
+    };
+    console.log(getUrlParams(url)); //{name: 'zhangsan', age: '18', sex: 'nan'}
+  </script>
+</html>
